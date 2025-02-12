@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  whisper-echo:
+    build: .
+    image: whisper-echo
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
