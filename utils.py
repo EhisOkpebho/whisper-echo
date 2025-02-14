@@ -6,7 +6,7 @@ import imageio_ffmpeg as ffmpeg
 from config import WHISPER_PATH, WHISPER_MODEL_PATH
 
 def is_model_available(model: str):
-    return os.path.exists(f"{WHISPER_MODEL_PATH}{model}.bin")
+    return os.path.exists(f"{WHISPER_MODEL_PATH}/ggml-{model}.bin")
 
 def convert_to_wav(input_path: str, output_path: str):
     ffmpeg_cmd = [
@@ -21,6 +21,6 @@ def transcribe(file_path: str, model: str):
             f"The model '{model}' does not exist or is not yet imported. Please try to pull it first.")
 
     return subprocess.run(
-        [WHISPER_PATH, "-m", f"{WHISPER_MODEL_PATH}{model}.bin", "-f", file_path],
+        [WHISPER_PATH, "-m", f"{WHISPER_MODEL_PATH}/ggml-{model}.bin", "-f", file_path],
         capture_output=True, text=True, check=True
     ).stdout
